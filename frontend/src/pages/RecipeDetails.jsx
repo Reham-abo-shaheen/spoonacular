@@ -20,7 +20,7 @@ export default function RecipeDetails() {
 
         const fetchRecipe = async () => {
             try {
-                const res = await apiFetch(`/api/recipes/${id}`);
+                const res = await apiFetch(`api/recipes/${id}`);
 
                 setRecipe(res);
             } catch (error) {

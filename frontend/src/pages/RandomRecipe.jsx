@@ -11,7 +11,7 @@ export default function RandomRecipe() {
         try {
             setLoading(true);
             setError(null);
-            const response = await apiFetch('/api/recipes/random');
+            const response = await apiFetch('api/recipes/random');
 
             setRandomRecipe(response || []);
 

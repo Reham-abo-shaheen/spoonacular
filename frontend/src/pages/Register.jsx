@@ -21,7 +21,7 @@ export default function Register() {
         }
 
 
-        const res = await apiFetch("/api/users/register", {
+        const res = await apiFetch("api/users/register", {
             method: "POST",
             body: { username, email, password }
         });

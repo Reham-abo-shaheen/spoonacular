@@ -25,7 +25,7 @@ export default function Home() {
             }).toString();
 
             localStorage.setItem("search", JSON.stringify(filters));
-            const response = await apiFetch(`/api/recipes/search?${queryString}`, { method: "GET" });
+            const response = await apiFetch(`api/recipes/search?${queryString}`, { method: "GET" });
             setRecipes(response.results || []);
             setLoading(false);
         } catch (e) {

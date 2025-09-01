@@ -15,7 +15,7 @@ export default function RecipeComponent({ recipe }) {
     const id = recipe.id
     const title = recipe.title
     const image = recipe.image
-    const newFavorite = await apiFetch("/api/favorites/newFavorite", {
+    const newFavorite = await apiFetch("api/favorites/newFavorite", {
       method: "POST",
       token,
       body: { id, title, image }

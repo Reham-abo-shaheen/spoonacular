@@ -21,7 +21,7 @@ export default function Favorites() {
     }, []);
 
     const getFavorites = async () => {
-        const response = await apiFetch("/api/favorites", {
+        const response = await apiFetch("api/favorites", {
             method: "GET",
             token,
 
