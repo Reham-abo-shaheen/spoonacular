@@ -10,7 +10,7 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        const res = await apiFetch("/api/users/login", {
+        const res = await apiFetch("api/users/login", {
             method: "POST",
             body: { username, password },
         });
