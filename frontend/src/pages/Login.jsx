@@ -21,6 +21,7 @@ export default function Login() {
         if (token && user.username === username) {
             localStorage.setItem("isLoggedIn", true);
             navigate("/");
+            window.location.reload();
         } else {
             alert("Invalid email or password.");
         }
