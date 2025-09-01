@@ -41,16 +41,11 @@ export default function Favorites() {
         }
 
         try {
-            const res = await fetch(`http://localhost:3000/api/favorites/${id}`, {
+            const res = await apiFetch(`api/favorites/${id}`, {
                 method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": "Bearer " + token
-                }
+                token,
             });
-
-            const data = await res.json();
-            alert(data.msg);
+            alert(res.msg);
 
             const updatedFavorites = favorites.filter((recipe) => recipe.id !== id);
             setFavorites(updatedFavorites);
