@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RecipeComponent from "../components/RecipeComponent";
+import { apiFetch } from "../api/client";
 export default function RandomRecipe() {
     const [randomRecipe, setRandomRecipe] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -10,14 +11,9 @@ export default function RandomRecipe() {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch('http://localhost:3000/api/recipes/random');
+            const response = await apiFetch('/api/recipes/random');
 
-            if (!response.ok) {
-                throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
-            }
-
-            const data = await response.json();
-            setRandomRecipe(data || []);
+            setRandomRecipe(response || []);
 
         } catch (e) {
             console.error(e.message);

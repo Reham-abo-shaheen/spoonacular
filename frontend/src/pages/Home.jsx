@@ -3,6 +3,7 @@ import FormSearch from "../components/FormSearch";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Card from "../components/Card";
+import { apiFetch } from "../api/client";
 export default function Home() {
 
     const [recipes, setRecipes] = useState([]);
@@ -23,11 +24,9 @@ export default function Home() {
                 maxReadyTime: filters.time || ""
             }).toString();
 
-            const response = await fetch(`http://localhost:3000/api/recipes/search?${queryString}`);
-
-            if (!response.ok) throw new Error(`Error fetching data ->  ${response.status}`);
-            const data = await response.json();
-            setRecipes(data.results || []);
+            localStorage.setItem("search", JSON.stringify(filters));
+            const response = await apiFetch(`/api/recipes/search?${queryString}`, { method: "GET" });
+            setRecipes(response.results || []);
             setLoading(false);
         } catch (e) {
             setError(e.message);
@@ -36,6 +35,11 @@ export default function Home() {
             setLoading(false);
         };
     };
+
+    let search = JSON.parse(localStorage.getItem("search"));
+
+
+
 
 
     return (
@@ -47,7 +51,7 @@ export default function Home() {
             {recipes.length > 0 && (
                 <div className="result py-12">
                     <div className="text-center">
-                        <h1 className="text-xl  font-semibold tracking-tight text-balance text-gray-600 sm:text-7xl my-8">Result for   </h1>
+                        <h1 className="text-xl  font-semibold tracking-tight text-balance text-gray-600 sm:text-7xl my-8">Result for {search?.query && <span className="text-lime-500">" {search.query} "</span>}   </h1>
                         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 m-14">
                             {recipes.map((recipe, index) => (
                                 <Card recipe={recipe} key={index} />

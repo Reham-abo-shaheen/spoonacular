@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../api/client";
 
 export default function Register() {
     const [username, setUsername] = useState("");
@@ -20,14 +21,12 @@ export default function Register() {
         }
 
 
-        const res = await fetch("http://localhost:3000/api/users/register", {
+        const res = await apiFetch("/api/users/register", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email, password })
+            body: { username, email, password }
         });
 
-        const data = await res.json();
-        if (data.success) {
+        if (res) {
             alert("Registration successful!");
             navigate("/login");
         } else {

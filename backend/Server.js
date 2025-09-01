@@ -10,6 +10,8 @@ const port = 3000
 
 dotenv.config()
 
+
+
 // middleware
 app.use(express.json())
 app.use(cors({
@@ -24,10 +26,15 @@ app.use(cors({
 app.use('/api/users', userRoutes)
 app.use('/api/favorites', favoriteRoutes);
 app.use('/api/recipes', RecipesRoutes)
+
+app.get("/", (req, res) => {
+    res.json({ status: "OK" });
+});
 // connect to database
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error(err));
+
 
 // start the server
 app.listen(port, () => {

@@ -8,6 +8,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { Navigate } from "react-router-dom";
+import { apiFetch } from "../api/client";
 library.add(fas, far, fab) // <- add them to the library
 export default function Favorites() {
     const [favorites, setFavorites] = useState([]);
@@ -20,19 +21,14 @@ export default function Favorites() {
     }, []);
 
     const getFavorites = async () => {
-        // eslint-disable-next-line no-unused-vars
-        const response = await fetch("http://localhost:3000/api/favorites", {
+        const response = await apiFetch("/api/favorites", {
             method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": "Bearer " + token
-            }
+            token,
 
-        }).then(res => res.json())
-            .then(data => {
-                localStorage.setItem("favorites", JSON.stringify(data));
-                setFavorites(data);
-            });
+        })
+        localStorage.setItem("favorites", JSON.stringify(response));
+        setFavorites(response);
+
 
 
     };

@@ -8,6 +8,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import RecipeComponent from "../components/RecipeComponent";
+import { apiFetch } from "../api/client";
 export default function RecipeDetails() {
     library.add(fas, far, fab) // <- add them to the library
     const { id } = useParams();
@@ -19,9 +20,9 @@ export default function RecipeDetails() {
 
         const fetchRecipe = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/recipes/${id}`);
-                const data = await res.json();
-                setRecipe(data);
+                const res = await apiFetch(`/api/recipes/${id}`);
+
+                setRecipe(res);
             } catch (error) {
                 console.error("Error fetching recipe:", error);
             } finally {

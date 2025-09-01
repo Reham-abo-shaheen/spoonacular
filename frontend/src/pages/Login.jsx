@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { apiFetch } from "../api/client";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -9,23 +10,17 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        const res = await fetch("http://localhost:3000/api/users/login", {
+        const res = await apiFetch("/api/users/login", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password }),
+            body: { username, password },
         });
-        const { token, user } = await res.json();
-        console.log(res.json())
-        console.log(token, user)
+        const { token, user } = await res;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
 
         if (token && user.username === username) {
             localStorage.setItem("isLoggedIn", true);
             navigate("/");
-            window.location.reload();
         } else {
             alert("Invalid email or password.");
         }
