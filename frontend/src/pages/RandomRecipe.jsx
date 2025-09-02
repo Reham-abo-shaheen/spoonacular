@@ -43,7 +43,7 @@ export default function RandomRecipe() {
                 </div>
             )}
 
-            {loading && <p className="mt-4">Loading recipe...</p>}
+            {loading && <p className="text-2xl font-bold my-8 text-gray-400 text-center">Loading recipe...</p>}
 
             {randomRecipe && !loading && (
                 <RecipeComponent recipe={randomRecipe} />

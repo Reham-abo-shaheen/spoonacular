@@ -46,7 +46,7 @@ export default function Home() {
         <>
 
             {!recipes.length > 0 && <FormSearch onSearch={searchRecipes} />}
-            {loading && <p className="text-center text-lg text-gray-600">Loading...</p>}
+            {loading && <p className="text-2xl font-bold my-8 text-gray-400 text-center">Loading...</p>}
             {error && <p className="text-center text-lg text-red-600">{error}</p>}
             {recipes.length > 0 && (
                 <div className="result py-12">
@@ -62,7 +62,7 @@ export default function Home() {
             )
             }
             {
-                recipes.length === 0 && check && (<div className="flex flex-col items-center justify-center">
+                recipes.length === 0 && check && !loading && (<div className="flex flex-col items-center justify-center">
                     <h1 className="text-4xl font-bold text-gray-900">No Results Found</h1>
                     <p className="text-lg text-gray-600">Try searching for something else</p>
                 </div>)
