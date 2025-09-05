@@ -40,7 +40,7 @@ export default function RecipeDetails() {
 
 
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p className="text-2xl font-bold my-8 text-gray-400 text-center">Loading...</p>;
     if (!recipe) return <p>Recipe not found</p>;
     return (
         <>

@@ -12,7 +12,7 @@ export default function RecipeComponent({ recipe }) {
   const token = localStorage.getItem("token")
 
   const addToFavorites = async (recipe) => {
-    const id = recipe.id
+    const id = recipe.spoonacularId
     const title = recipe.title
     const image = recipe.image
     const newFavorite = await apiFetch("api/favorites/newFavorite", {
@@ -37,6 +37,7 @@ export default function RecipeComponent({ recipe }) {
     setIsFavorited(idsFa.includes(Number(recipe.id)));
   }, [recipe.id]);
 
+  console.log(isFavorited);
   return (
     <>
       <>

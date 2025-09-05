@@ -9,7 +9,6 @@ export async function apiFetch(path, { method = "GET", body, token } = {}) {
         body: body ? JSON.stringify(body) : undefined,
 
     });
-
     if (!res.ok) {
         let msg = `HTTP ${res.status}`;
         try {

@@ -7,7 +7,7 @@ export default function FormSearch({ onSearch }) {
         query: "",
         cuisine: "",
         diet: "",
-        time: ""
+        maxReadyTime: ""
 
     });
     const handleSubmit = (e) => {
@@ -74,8 +74,8 @@ export default function FormSearch({ onSearch }) {
                                         <input
                                             type="number"
                                             placeholder="Max cooking time"
-                                            value={filters.time}
-                                            onChange={(e) => setFilters({ ...filters, time: e.target.value })}
+                                            value={filters.maxReadyTime}
+                                            onChange={(e) => setFilters({ ...filters, maxReadyTime: e.target.value })}
                                             className="bg-gray-100 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-lime-500 outline-0 rounded-xl p-3 my-2 placeholder-gray-500 w-full sm:w-48 shadow-sm transition-all duration-200"
                                         />
                                     </div>

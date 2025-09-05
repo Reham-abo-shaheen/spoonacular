@@ -21,9 +21,8 @@ export default function Home() {
                 query: filters.query || "",
                 cuisine: filters.cuisine || "",
                 diet: filters.diet || "",
-                maxReadyTime: filters.time || ""
+                maxReadyTime: filters.maxReadyTime || ""
             }).toString();
-
             localStorage.setItem("search", JSON.stringify(filters));
             const response = await apiFetch(`api/recipes/search?${queryString}`, { method: "GET" });
             setRecipes(response.results || []);
@@ -38,7 +37,7 @@ export default function Home() {
 
     let search = JSON.parse(localStorage.getItem("search"));
 
-
+    // console.log(recipes)
 
 
 
