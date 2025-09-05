@@ -10,6 +10,9 @@ function mapInfoToRecipeDoc(info) {
         summary: info.summary,
         sourceUrl: info.sourceUrl,
         cuisines: info.cuisines || [],
+        analyzedInstructions: info.analyzedInstructions,
+        extendedIngredients: info.extendedIngredients,
+        dishTypes: info.dishTypes || [],
         diets: info.diets || [],
         readyInMinutes: info.readyInMinutes,
         servings: info.servings,
@@ -27,7 +30,7 @@ function mapInfoToRecipeDoc(info) {
 
 export const search = async (req, res) => {
     try {
-        const { query, cuisine, diet, maxReadyTime, number = 10, offset = 0 } = req.query;
+        const { query = "", cuisine = "", diet = "", maxReadyTime = "", number = 10, offset = 0 } = req.query;
 
         const data = await spoonSearch({ query, cuisine, diet, maxReadyTime, number, offset });
         const results = data.results || [];

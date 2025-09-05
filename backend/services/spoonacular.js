@@ -7,7 +7,7 @@ const api = axios.create({
         apiKey: process.env.SPOONACULAR_API_KEY
     }
 })
-export async function spoonSearch({ query, diet, cuisine, maxReadyTime, number = 10, offset = 0 }) {
+export async function spoonSearch({ query, diet, cuisine, Number: maxReadyTime, number = 10, offset = 0 }) {
 
     const { data } = await api.get('/recipes/complexSearch', {
         params: {
